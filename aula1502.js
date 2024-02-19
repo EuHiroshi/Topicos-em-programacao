@@ -1,10 +1,12 @@
-const fs = require("fs");
+const fs = require("fs/promises");
+// const fs = require("fs");
 
 async function writeFileAsyncAwaitt(nomeArquivo, dados) {
   console.log(`Escrevendo dados no arquivo ${nomeArquivo}...`);
   
   try {
-    fs.writeFileSync(nomeArquivo, dados);
+    // fs.writeFileSync(nomeArquivo, dados);
+    fs.writeFile(nomeArquivo, dados);
     console.log(`Dados escritos no arquivo ${nomeArquivo} com sucesso.`);
   } catch (error) {
     console.log(`Erro ao escrever dados no arquivo ${nomeArquivo}...`);
@@ -16,7 +18,8 @@ async function readFileAsyncAwait(nomeArquivo) {
   console.log(`Lendo dados do arquivo: ${nomeArquivo}`);
 
   try {
-    const data = fs.readFileSync(nomeArquivo, {encoding: 'utf-8'});
+    // const data = fs.readFileSync(nomeArquivo, {encoding: 'utf-8'});
+    const data = fs.readFile(nomeArquivo, {encoding: 'utf-8'});
     console.log(`Dados lidos do arquivo ${nomeArquivo}`);
     return data;
   } catch (error) {
