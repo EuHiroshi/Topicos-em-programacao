@@ -1,0 +1,75 @@
+Conceitos fundamentais sobre o ciclo de vida js
+
+
+callstack
+  pilha de informacoes q um programa vai executar, linha por linha
+  exemplo: callback que chama outro de forma ordenada
+
+  utilizada para guardar as execuçoes futuras do nosso programa, seguindo a estrutura pilha (first in first out)
+  assim ela adiciona a chamada da func no topo da pilha, executa e remove
+  ja q as chamadas do js acontecem de forma assincrona ela usa a callstack para entender como executar a quantidade de informaçoes de forma ordenadas
+
+  e basicamente uma tabela q a chave e um endereço de memoria e o valor e um tipo primitivo
+  alem disso e o lugar onde tds os valores e tipo primitivo,como, bigint, string, null, boolean, undefined, symbol sao armazenados
+
+memory heap
+  guardar os dados do tipo de referencia
+  memory heap ou pilha de memoria, e o lugar onde os endereço de memoria podem ser armazenados, que podem ser apontados pelo callstack, para trabalhar os valores de variaveis
+  
+gpt
+Memory Heap (Monte de Memória):
+Imagine que o computador tem uma grande mesa (a heap) onde pode colocar todas as suas coisas. Aqui, as coisas são os dados que o seu programa precisa lembrar e acessar durante a sua execução. Quando o programa precisa de espaço para armazenar dados, ele coloca esses dados na heap. É como se fosse um grande depósito onde o programa guarda objetos que precisará usar mais tarde.
+
+Call Stack (Pilha de Chamadas):
+Agora, vamos pensar na pilha de chamadas como uma pilha de pratos. Quando você coloca um prato em cima do outro, o último prato colocado será o primeiro a ser retirado. Da mesma forma, quando uma função é chamada em um programa, ela é adicionada à pilha de chamadas. Assim que a função termina de ser executada, ela é retirada da pilha. Isso acontece em ordem inversa, ou seja, a última função a entrar é a primeira a sair. É como uma lista de tarefas a fazer, onde você executa a última tarefa primeiro e assim por diante.
+
+teste de carga
+  package.json
+    "test:cannon": "npx autocannon -c 500 -d 20 --workers 10 --renderStatusCodes --latency --warmup [-c 1 -d 2] localhost:3000/users"
+
+media de teste de carga
+  1- rodar o teste e conseguir um num consideravel de falhas
+  2- rodar o teste pelo menos 10 vezes e tirar a media de:
+    tirar a media de requests realizadas
+    tirar a media de requests q deram 200
+    tirar a media de requests q falharam com timeout / erros
+    
+  3- criar o numero de cluster exatos e necessarios para atender as requisições a fim de reduzir o numero de falhas ate um total aceitavel
+
+  testes:
+  "test:cannon": "npx autocannon -c NUMERO DE TESTES -d 20 --workers 10 --renderStatusCodes --latency --warmup [-c 1 -d 2] localhost:3000/users"
+  1: 500 / 5000
+    24466 ok, 1k erros
+
+  2: 1000 / 10000
+    24655 ok, 7k erros
+  
+  3: 1500 / 15000
+    DEU RUIM
+
+  4: 1400 / 14000
+    22348 ok, 8k erros
+
+  5: 1450 / 14500
+    17454 ok, 9k erros
+
+  6: 1480 / 14800
+    21097 ok, 9k erros
+
+  7: 1490 / 14900
+    19293 ok, 9k erros
+
+  8: 1495 / 14950
+    18985 ok, 10k erros
+
+  9: 1498 / 14980
+    DEU RUIM
+
+  10: 1497 / 14970
+    19852 ok, 8k erros
+
+    tirar a media de requests realizadas (133100 / 10 = 13310)
+    tirar a media de requests q deram 200 (168150 / 10 = 16815)
+    tirar a media de requests q falharam com timeout / erros (61000 / 10 = 6100)
+
+    

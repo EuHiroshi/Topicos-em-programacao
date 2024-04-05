@@ -1,0 +1,13 @@
+Conceitos fundamentais sobre o ciclo de vida js
+
+
+callstack
+  pilha de informacoes q um programa vai executar, linha por linha
+  exemplo: callback que chama outro de forma ordenada
+
+  utilizada para guardar as execuçoes futuras do nosso programa, seguindo a estrutura pilha (first in first out)
+  assim ela adiciona a chamada da func no topo da pilha, executa e remove
+  ja q as chamadas do js acontecem de forma assincrona ela usa a callstack para entender como executar a quantidade de informaçoes de forma ordenadas
+
+  e basicamente uma tabela q a chave e um endereço de memoria e o valor e um tipo primitivo
+  alem disso e o lugar onde tds os valores e tipo primitivo,como, bigint, string, null, boolean, undefined, symbol sao armazenados
